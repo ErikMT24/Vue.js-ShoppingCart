@@ -1,4 +1,5 @@
-![Itgam(URL de la imagen que te da github)]
+![Itgam(https://raw.githubusercontent.com/ErikMT24/Vue.js-ShoppingCart/main/md/img/Itgam.jpg)]
+
 
 Shopping Cart 🚗 Project
 
