@@ -4,13 +4,25 @@
 import { ref } from 'vue'
 // Creando una referencia reactiva
 // de tipo string
-const header = ref('App lista de compras');
-//const shoppingIcon = ref('material-icons shopping-cart-icon');
+const header = ref(' App lista de compras');
 const bag = ref('<i class="material-icons shopping-cart-icon">local_mall</i>')
+//const shoppingIcon = ref('material-icons shopping-cart-icon');
+//Creando una referencia reactiva
+//para almacenar el valor de la lista 
+const items = ref([ '', 
+{id: 0, label:'Leche'},
+{id: 2, label:'Arroz'},
+{id: 3, label:'Carne'},
+{id: 4, label:'Pan'}, 
+{id: 5, label:'Huevos'}
+]);
 </script>
 
 <template>
-   <h1> <span v-html="bag"></span> {{ header }} </h1>
+   <h1> <i :class="shoppingIcon">local_mall</i> <span v-html="bag"></span> {{ header }} </h1>
+   <ul>
+    <li v-for="item in items" v-bind:key="item.id">⭐{{ item.label }}</li>
+   </ul>
 </template>
 
 <style scoped>
