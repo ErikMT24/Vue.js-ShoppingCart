@@ -1,4 +1,4 @@
-![Itgam(https://raw.githubusercontent.com/ErikMT24/Vue.js-ShoppingCart/main/md/img/Itgam.jpg)]
+![Itgam](https://raw.githubusercontent.com/ErikMT24/Vue.js-ShoppingCart/main/md/img/Itgam.jpg)
 
 
 Shopping Cart 🚗 Project
