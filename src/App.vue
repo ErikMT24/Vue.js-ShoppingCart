@@ -23,15 +23,16 @@ const newItemHighPriority = ref(false);
 <template> 
    <h1> <i :class="shoppingIcon">local_mall</i> <span v-html="bag"></span> {{ header }} </h1>
    <div class="Add-Item form">
-      <input v-model="newItem" placeholder="Agregar Articulo">
+      <input v-model="newItem" type="text" placeholder="Agregar Articulo">
    <!-- Radio Button -->
       <label><input type="checkbox" v-model="newItemHighPriority">Alta prioridad</label>
-      <!-- Button -->
-      <button class="btn btn-primary" v-on:click="items.push({id: items.length, label:newItem})">
-         Agregar Articulo</button>
+      <!-- Helados-->
+      <label><input type="checkbox>">Flavor1</label>
+      <label><input type="checkbox>">Flavor2</label>
+      <label><input type="checkbox>">Flavor3</label>
    </div>
    <ul>
-    <li v-for="({id,label}, i) in items" v-bind:key="id">⭐ {{ i }} {{ label }}</li>
+    <li v-for="({id,label}, ) in items" v-bind:key="id">⭐  {{ label }}</li>
    </ul>
 </template>
 <style scoped>
