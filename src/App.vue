@@ -4,32 +4,53 @@
 import { ref } from 'vue'
 // Creando una referencia reactiva
 // de tipo string
-const header = ref ('App lista de compras');
-//const bag = ref('<i class="material-icons shopping-cart-icon">local_mall</i>')
+const header = ref ('App lista de compras')
 const shoppingIcon = ref('material-icons shopping-cart-icon');
 //Creando una referencia reactiva
 //para almacenar el valor de la lista 
 const items = ref([ 
-{id: 0, label:'Leche'},
-{id: 2, label:'Arroz'},
-{id: 3, label:'Carne'},
-{id: 4, label:'Pan'}, 
-{id: 5, label:'Huevos'}
+// {id: 0, label:'Leche'},
+// {id: 2, label:'Arroz'},
+// {id: 3, label:'Carne'},
+// {id: 4, label:'Pan'}, 
+// {id: 5, label:'Huevos'}
 ]);
 const newItem = ref('');
 const newItemHighPriority = ref(false);
-//Metodos
-const saveItems = () => {};
+
+const saveItems = () => {
 //Agrega un nuevo elemento a la lista 
 //Proveniente de la caja de texto 
 items.value.push({id: items.value.length, label: newItem.value})
 //Borramos el contenido de la caja de texto 
 newItem.value="";
+};
+//Paso 2
+const doEdit = (edit) => {
+   showAddItem.value = edit;
+   newItem.value = "";
+}
+//Paso 1 para la visualizacion
+const showAddItem = ref(false);
 </script>
 
 <template> 
-   <h1> <i :class="shoppingIcon">local_mall</i> <span v-html="bag"></span> {{ header }} </h1>
-   <form v-on:submit.prevent="saveItems"
+<!-- Header -->
+<div class="header">
+   <h1>
+       <i :class="shoppingIcon">local_mall</i> <span v-html="bag"></span> {{header}} 
+      </h1>
+      <button
+      v-on:click="doEdit(false)"
+       v-if="showAddItem" class="btn">Cancelar</button>
+      <button
+       v-else
+       v-on:click="doEdit(true)"
+        class="btn btn-primary">Agregar articulo
+      </button>
+</div>
+      <!-- Formulario -->
+   <form v-if="showAddItem" v-on:submit.prevent="saveItems"
     class="Add-Item form">
       <input v-model="newItem" type="text" 
       placeholder="Agregar Articulo">
@@ -40,9 +61,16 @@ newItem.value="";
       <button class="btn btn-primary">
       Agregar articulo</button>
 </form>
+<!-- Entrega de lista  -->
    <ul>
-    <li v-for="({id,label}, ) in items" v-bind:key="id">⭐ {{ label }}</li>
+    <li v-for="({id,label}, ) in items" v-bind:key="id">⭐{{ label }}</li>
    </ul>
+   <!-- Mensaje condicional  -->
+   <p v-if="items.length === 0">No hay elementos en la lista 🚫</p>   
 </template>
+
 <style scoped>
+.shopping-cart-icon{
+   font-size: 2rem;
+}
 </style>
