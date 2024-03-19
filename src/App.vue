@@ -9,11 +9,11 @@ const shoppingIcon = ref('material-icons shopping-cart-icon');
 //Creando una referencia reactiva
 //para almacenar el valor de la lista 
 const items = ref([ 
-// {id: 0, label:'Leche'},
-// {id: 2, label:'Arroz'},
-// {id: 3, label:'Carne'},
-// {id: 4, label:'Pan'}, 
-// {id: 5, label:'Huevos'}
+{id: 0, label:'Leche', purchased: false, highPriority: true},
+{id: 2, label:'Arroz', purchased: false, highPriority: false},
+{id: 3, label:'Carne', purchased: true, highPriority: false},
+{id: 4, label:'Pan', purchased: false, highPriority: false}, 
+{id: 5, label:'Huevos', purchased: true, highPriority: true}
 ]);
 const newItem = ref('');
 const newItemHighPriority = ref(false);
@@ -38,7 +38,7 @@ const showAddItem = ref(false);
 <!-- Header -->
 <div class="header">
    <h1>
-       <i :class="shoppingIcon">local_mall</i> <span v-html="bag"></span> {{header}} 
+       <i :class="shoppingIcon">local_mall</i> <span v-html="bag"></span> {{ header }} 
       </h1>
       <button
       v-on:click="doEdit(false)"
@@ -63,7 +63,9 @@ const showAddItem = ref(false);
 </form>
 <!-- Entrega de lista  -->
    <ul>
-    <li v-for="({id,label}, ) in items" v-bind:key="id">⭐{{ label }}</li>
+    <li v-for="({id,label, purchased, highPriority}, ) in items" 
+    :class= "{priority: highPriority, strikeout :purchased}"
+    v-bind:key="id">⭐{{ label }}</li>
    </ul>
    <!-- Mensaje condicional  -->
    <p v-if="items.length === 0">No hay elementos en la lista 🚫</p>   
