@@ -1,7 +1,7 @@
 <script setup>
 // Importando funcion
 // para crear referencias reactivas
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 // import IconTooling from './components/icons/IconTooling.vue';
 // Creando una referencia reactiva
 // de tipo string
@@ -20,6 +20,10 @@ const togglePurchased = (item) => {
    item.purchased = !item.purchased
 };
 const newItem = ref('')
+//Creando porpiedades computada
+const characterCount = computed(() =>{return newItem.value.length;}
+
+);
 const newItemHighPriority = ref(false);
 
 const saveItems = () => {
@@ -70,6 +74,9 @@ const showAddItem = ref(false);
       <!-- Button-->
       <button class="btn btn-primary">
       Agregar articulo</button>
+      <p class="counter">
+         {{ characterCount }}/200
+      </p>
 </form>
 <!-- Entrega de lista  -->
    <ul>
