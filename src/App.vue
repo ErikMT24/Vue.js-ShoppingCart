@@ -2,6 +2,7 @@
 // Importando funcion
 // para crear referencias reactivas
 import { ref } from 'vue'
+// import IconTooling from './components/icons/IconTooling.vue';
 // Creando una referencia reactiva
 // de tipo string
 const header = ref ('App lista de compras')
@@ -15,7 +16,10 @@ const items = ref([
 {id: 4, label:'Pan', purchased: false, highPriority: false}, 
 {id: 5, label:'Huevos', purchased: true, highPriority: true}
 ]);
-const newItem = ref('');
+const togglePurchased = (item) => {
+   item.purchased = !item.purchased
+};
+const newItem = ref('')
 const newItemHighPriority = ref(false);
 
 const saveItems = () => {
@@ -63,10 +67,16 @@ const showAddItem = ref(false);
 </form>
 <!-- Entrega de lista  -->
    <ul>
-    <li v-for="({id,label, purchased, highPriority}, ) in items" 
+    <li v-for="({id,label, purchased, highPriority}, index) in items" 
+    @click="togglePurchased(items[index])"
     :class= "{priority: highPriority, strikeout :purchased}"
     v-bind:key="id">⭐{{ label }}</li>
    </ul>
+   <!-- <ul>
+    <li v-for="({id,label, purchased, highPriority}, ) in items" 
+    :class= "[purchased ? 'strikeout': '', highPriority ? 'priority': '']"
+    v-bind:key="id">⭐{{ label }}</li>
+   </ul> -->
    <!-- Mensaje condicional  -->
    <p v-if="items.length === 0">No hay elementos en la lista 🚫</p>   
 </template>
