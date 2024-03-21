@@ -16,13 +16,18 @@ const shoppingIcon = ref('material-icons shopping-cart-icon');
 // {id: 4, label:'Pan', purchased: false, highPriority: false}, 
 // {id: 5, label:'Huevos', purchased: true, highPriority: true}
 ]);
+const reverseItems = computed (() =>{
+   //Regreso una version invetida 
+   //Del arreglo "items"
+   return[... items.value].reverse();
+});
 const togglePurchased = (item) => {
    item.purchased = !item.purchased
 };
 const newItem = ref('')
 //Creando porpiedades computada
-const characterCount = computed(() =>{return newItem.value.length;}
-
+const characterCount = computed(() =>
+{return newItem.value.length;}
 );
 const newItemHighPriority = ref(false);
 
@@ -80,8 +85,8 @@ const showAddItem = ref(false);
 </form>
 <!-- Entrega de lista  -->
    <ul>
-    <li v-for="({id,label, purchased, highPriority}, index) in items" 
-    @click="togglePurchased(items[index])"
+    <li v-for="({id,label, purchased, highPriority}, index) in reverseItems" 
+    @click="togglePurchased(reverseItems[index])"
     :class= "{priority: highPriority, strikeout :purchased}"
     v-bind:key="id">⭐{{ label }}</li>
    </ul>
